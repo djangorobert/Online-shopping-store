@@ -1,0 +1,73 @@
+
+
+
+
+{% extends 'base.html' %}
+
+
+{% block breadcrumb %}
+<li class="breadcrumb-item" aria-current="page">
+    <a href="{% url 'books:book-list' %}">Book List</a>
+</li>
+<li class="breadcrumb-item" aria-current="page">
+    <p><a href="{{ exercise.chapter.book.get_absolute_url }}">
+        {{ exercise.chapter.book.title}}</a></p>
+</li>
+<li class="breadcrumb-item active" aria-current="page">
+    <p><a href="{{ exercise.chapter.get_absolute_url }}">
+    {{ exercise.chapter.title }}</a></p>
+</li>
+<li class="breadcrumb-item active" aria-current="page">
+    {{ exercise.title }}
+</li>
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class='row'>
+    <main class='col-md-4'>
+     
+      {% include 'book_snippet.html' with book=exercise.chapter.book %}
+    </main>
+
+    <aside class='col-md-8'>
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+            Solutions
+            </div>
+            
+            {% for solution in exercise.solution_set.all %}
+            <div class="accordion" id="toggle{{ solution.solution_number }}">
+                <div class="card">
+                  <div class="card-header" id="heading-{{ solution.solution_number }}">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse-{{ solution.solution_number }}" aria-expanded="true" aria-controls="collapse-{{ solution.solution_number }}">
+                        Solution:{{ solution.solution_number }}
+                      </button>
+                    </h2>
+                  </div>
+                  
+            <div id="collapse-{{ solution.solution_number }}" class="collapse" aria-labelledby="headingOne" data-parent="#toggle-{{ solution.solution_number }}">
+                <div class="card-body">
+                    
+                <img src="{{ solution.image.url }}" class="card-img-top" >
+
+                </div>
+            </div>
+            </div>
+                
+                
+                </div>
+              </div>
+              
+                   
+            {% endfor %}
+            
+          </div>
+     
+    </aside>
+</div>
+{% endblock %}

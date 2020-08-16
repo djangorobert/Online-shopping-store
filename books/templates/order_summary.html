@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+
+        <h1>Order Summary</h1>
+        <hr/>
+
+        <table class="table table-hover table-borded text-center">
+            <tr class="text-center">
+                <th>no.</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Sub Total</th>
+            </tr>
+
+            {% for item in order.items.all %}
+
+            <tr>
+                
+                <td>{{ forloop.counter }}</td>
+                <td>{{ item.book.title }}
+                <span class="pull-right"><a href="{% url 'cart:remove-from-cart' item.book.slug %}" class="text-danger"><i class="fas fa-trash"></i></a></span>
+                </td>
+                <td>>{{ item.book.price }}</td>
+             
+            </tr>
+            {% empty %}
+
+            <tr>
+
+                <td colspan="3">
+                    There are no items in your cart
+                </td>
+            </tr>
+
+            {% endfor %}
+            <tr>
+            <td colspan='2'>
+                <strong class='pull-right'>Order Total</strong>
+
+            </td>
+
+            <td colspan='1'>
+                <strong>${{ order.get_total }}</strong>
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+               
+                <a href="{% url 'books:book-list' %}" class="btn btn-warning pull-left ">
+                    {% if order %}
+                    Continue shopping
+                    {% else %}
+                    Add items to your Cart</a>
+                    {% endif %}
+               
+
+            </td>
+        </tr>
+
+
+        {% if order.get_total %}
+        <tr>
+            <td colspan="3">
+               
+                <a href="{% url 'cart:checkout' %}" class="btn btn-primary pull-left ">
+                   
+                   Checkout
+                </a>
+                  
+            </td>
+        </tr>
+        {% endif %}
+
+        </table>
+    
+{% endblock %}

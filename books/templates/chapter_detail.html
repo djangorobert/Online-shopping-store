@@ -1,0 +1,55 @@
+
+
+{% extends 'base.html' %}
+
+
+{% block breadcrumb %}
+<li class="breadcrumb-item" aria-current="page">
+    <a href="{% url 'books:book-list' %}">Book List</a>
+</li>
+<li class="breadcrumb-item" aria-current="page">
+    <p><a href="{{ chapter.book.get_absolute_url }}">
+        {{ chapter.book.title}}</a></p>
+</li>
+<li class="breadcrumb-item active" aria-current="page">
+    {{ chapter }}
+</li>
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class='row'>
+    <main class='col-md-4'>
+     
+        {% include 'book_snippet.html' with book=chapter.book %}
+    </main>
+
+    <aside class='col-md-8'>
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+            Exercises
+            </div>
+            <ul class="list-group list-group-flush">
+                
+            {% for exercise in chapter.exercise_set.all %}
+              <li class="list-group-item">  <a href="{{ exercise.get_absolute_url }}">
+                {{ exercise.exercise_number }}.{{ exercise.title }}
+            </a></li>
+            
+            {% endfor %}
+            
+              
+        
+            </ul>
+          </div>
+           
+
+      
+           
+     
+    </aside>
+</div>
+{% endblock %}
