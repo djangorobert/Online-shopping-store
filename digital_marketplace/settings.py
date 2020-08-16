@@ -20,12 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_#zloz)_2!ndouwydt8m7z5+9=x!d221(_8z#bfe5k=#+_ydij'
+SECRET_KEY = ''
 
 
 # Stripe settings
-STRIPE_PUBLISH_KEY = 'pk_test_51HFn87DwHxOKPeuhaKj2L2Zitl6y8opCkO8zsoRlYeHBNRWL0iouVufD8wlKTbZoI1xtECe3ElW6RxJ7tFm58OCB00kdOtMW9b'
-STRIPE_SECRET_KEY = 'sk_test_51HFn87DwHxOKPeuhs64gfnPEWv59dqpCGbIGbdxSgwc09Ra3SlWoz0u4Dpt3QIr82GW3dKKK3iv3Sw3kG9viNcz100aa1dZLs2'
+STRIPE_PUBLISH_KEY = ''
+STRIPE_SECRET_KEY = ''
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
